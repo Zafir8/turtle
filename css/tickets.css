@@ -1,0 +1,503 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    line-height: 1.5em;
+    margin: 0;
+    padding: 0;
+        
+      
+  }
+
+
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 5px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #f7f7f7;
+}
+
+header {
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+}
+
+
+
+header .wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+header .logo img {
+    height: 120px;
+    display: block;
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 100%;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+    transition: left 0.3s;
+}
+
+.navbar.show {
+    left: 0 !important;
+}
+
+.hide-scroll {
+    overflow: hidden;
+}
+
+.navbar ul {
+    all: unset;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.navbar ul a {
+    all: unset;
+    color: #444444;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 28px;
+}
+.navbar ul a:hover {
+    color: #111111;
+    text-decoration: underline overline;
+   
+}
+
+
+.close-nav {
+    text-align: right;
+    margin-bottom: 20px;
+}
+.close-nav button {
+    all: unset;
+    background: #f7f7f7;
+    font-size: 42px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 3px;
+    color: #444444;
+}
+.close-nav button:hover {
+    color: #222222;
+    background: white;
+}
+
+.menu-bar button {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f7f7f7;
+    height: 50px;
+    width: 50px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.menu-bar i {
+    display: block;
+    border-top: 3px solid #444444;
+    border-bottom: 3px solid #444444;
+}
+.menu-bar i::after {
+    display: block;
+    content: "";
+    border-top: 3px solid #444444;
+    margin: 6px 0;
+}
+.menu-bar button:hover {
+    background: white;
+}
+.menu-bar button:hover i {
+    border-color: #222222;
+}
+
+
+@media (min-width: 550px) {
+    .navbar {
+        all: unset;
+        display: block;
+        
+    }
+    .navbar ul {
+        flex-direction: row;
+        gap: 20px;
+       
+    }
+    .navbar ul a {
+        font-size: inherit;
+        
+    }
+    .close-nav,
+    .menu-bar {
+        display: none;
+    }
+}
+
+.container img {
+    position: relative;
+    bottom: 10px;
+    top: 10px;
+    height: 400px;
+    opacity: 1.0;
+    z-index: -10;
+    
+  }
+  
+  .main-text {
+  font-size: 3.5em;
+  color: white;
+  text-shadow: 10px 2px black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-style: italic;
+  z-index: -10;
+  
+  }
+    
+    
+    
+    .container {
+    position: relative;
+    text-align: center;
+    z-index: -10;
+    }
+      
+      
+    .main-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -10;
+    }
+  
+
+
+/* Path: css/tickets.css */
+ /* Add some general styles to the table */
+ .charges-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style for table headers */
+.charges-table th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for table cells */
+.charges-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for footer row */
+.footer-row {
+    font-weight: bold;
+}
+
+/* Add some spacing after the table */
+.charges-table + br {
+    margin-top: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .charges-table th,
+    .charges-table td {
+        padding: 6px;
+    }
+    .charges-table {
+        font-size: 14px;
+    }
+}
+  .box{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  
+  /* Form*/
+  input[type="date"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+
+  
+ 
+  
+  button {
+    background-color: darkcyan;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 50px;
+    
+  }
+  
+#slot {
+    margin-top: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    
+}
+
+.timeSlot li {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    box-shadow: 0 1px 1px 5px #ddd;
+    
+    
+}
+  
+
+  .number-input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .number-input button {
+      padding: 5px 10px;
+      background-color: darkcyan;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      border-radius: 3px;
+      transition: background-color 0.3s ease;
+  }
+  
+ 
+ h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: darkcyan
+  }
+  
+  
+ input[type="number"] {
+   width: 60px;
+   padding: 5px;
+   text-align: center;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+}
+
+  ul {
+    list-style: none;
+    padding: 10px;
+    margin: 30px 0;
+  }
+
+ /* Add styles only to the specific charges table */
+ .charges-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style for charges table headers */
+.charges-table th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for charges table cells */
+.charges-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for charges footer row */
+.charges-table .footer-row {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    
+  
+}
+
+/* Responsive styles for charges table */
+@media (max-width: 600px) {
+    .charges-table th,
+    .charges-table td {
+        padding: 6px;
+    }
+    .charges-table {
+        font-size: 14px;
+    }
+}
+  
+  .table-guest {
+    width: 50%;
+    margin-right: 20px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  td:nth-child(2) {
+    background-color: white;
+  }
+  
+  @media (max-width: 600px) {
+  
+    .table-guest {
+      width: 100%;
+      margin-right: 0;
+    }
+  
+    th, td {
+      padding: 5px;
+      font-size: 12px;
+    }
+  }
+
+  
+
+  .footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer .social-icons {
+    margin-top: 10px;
+  }
+  
+  .footer .social-icons a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    margin: 0 5px;
+    text-decoration: none;
+  }
+  
+  .footer .social-icons a:hover {
+    background-color: #555;
+  }
+  
+  .footer .newsletter-form {
+    margin-top: 20px;
+  }
+  
+  .footer .newsletter-form input[type="email"] {
+    padding: 8px;
+    border: none;
+    width: 200px;
+    border-radius: 3px;
+  }
+  
+  .footer .newsletter-form input[type="submit"] {
+    padding: 8px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    
+  }
+  
+  .footer .newsletter-form input[type="submit"]:hover {
+    background-color: #555;
+  }
+  
+  .footer .developer {
+    margin-top: 20px;
+  }
+  
+  .footer .developer a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .footer .developer a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer .copyright {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+    

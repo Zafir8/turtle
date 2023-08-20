@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--Meta tags for mobile and copyright, index -->
+  <meta charset="utf-8">
+  <meta name="keywords" content="TurtleMe,Turtles, Turtle hatcheries in Sri Lanka">
+  <meta name="description" content="Turtle Hatcheries in Sri Lanka">
+  <meta name="author" content="Zafir">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  <title>Tickets Page</title>
+  <link rel="stylesheet" href="css/tickets.css">
+  <link rel="icon" type="image/x-icon" href="images/Logo.jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
+</head>
+
+<body>
+  <div x-data="tickets">
+  <header>
+      <div class="wrapper">
+          <div class="logo">
+              <a href="index.html"><img src="images/Logo.jpeg" alt="logo"></a>
+          </div>
+          <div class="navbar">
+              <div class="close-nav"><button>×</button></div>
+              <nav>
+                  <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="Turtle categories.html">Turtle categories</a></li>
+                      <li><a href="Hikkaduwa turtle hatchery.html"> Hikkaduwa hatchery</a></li>
+                      <li><a href="Threats to turtles.html">Threats</a></li>
+                      <li><a href="Kosgoda.html">Kosgoda</a></li>
+                      <li><a href="Bentota.html">Bentota</a></li>
+                      <li><a href="Purchase and Donate.html">Purchase and Donate</a></li>
+                  </ul>
+              </nav>
+          </div>
+          <div class="menu-bar">
+              <button><i></i></button>
+          </div>
+      </div>
+  </header>
+  
+  <div class="container">
+    <img src="images/Booking Page imag.jpeg" alt="Turtle-main-image" style="width:100%;">
+    <div class="main-text ">Book Tickets</div>
+  </div>
+  <br>
+  <div>
+    <div>
+        <div class="box">
+        <div class="dates-serction">
+            <h2>Pick a date to visit</h2>
+            <p>Select a Date from the Calender</p>
+            <input type="date" name="date" id="date" x-model="date" >
+        </div>
+        <h2>Charges</h2>
+        <p>Please refer below before proceeding...</p>
+        <table class="charges-table">
+        <tr>
+            <th>Category</th>
+            <th>Normal Hour Charge (USD)</th>
+            <th>Peak Hour Charge (USD)</th>
+        </tr>
+        <tr>
+            <td>Foreigner Adult</td>
+            <td>10</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>Foreigner Child</td>
+            <td>5</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>SL Adult</td>
+            <td>4</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>SL Child</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="footer-row">Infants (under 3 years old) - Free</td>
+        </tr>
+    </table>
+    <br>
+
+    <div x-show="date">
+        <h2 id="slots">Time Slot</h2>
+        <p>Select time slots</p>
+        <div>
+            <ul class="timeSlot">
+                <template x-for="(timeSlot, index) in openTimes" :key="index">
+                    <li x-show="showTimes == selectedTimeSlots.includes(index)"
+                    x-bind:style="timeSlot.isPeak ? 'color: red' : 'color: green'"
+                        x-on:click="selectTimeSlot(index)">
+                        <p id="timeSlot.title" x-text="timeSlot.title" style="cursor: pointer;"></p>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </div><br>
+    <div x-show="selectedTimeSlots.length">
+        <h2 for="ticketType">Select Ticket Type</h2>
+        <template x-for="(ticketType, index) in ticketTypes" :key="index" style="display: flex;">
+            <div class="ticket-section">
+                <div class="ticket-name-type"><h3 x-bind:for="ticketType.name" x-text="ticketType.name"></h3></div>
+                    <button type="button"
+                        x-on:click="ticketTypes[index].count = (ticketTypes[index].count - 1 > 0 ? ticketTypes[index].count - 1 : 0); calculate(ticketTypes[index])">-</button>
+                    <input type="number" x-model="ticketTypes[index].count" />
+                    <button type="button"
+                        x-on:click="ticketTypes[index].count = ticketTypes[index].count + 1; calculate(ticketTypes[index])" >+</button>
+        </template>
+        </div>
+    
+<br>
+
+<h2>Purchase Summary</h2>
+<p>Check your purchase summary before proceeding</p>
+<br>
+
+    <div class="table-guest">
+    <table>
+       <tr>
+        <th>Date</th>
+        <td><div x-text="date"></div></td>
+      </tr>
+        <tr>
+            <th>Time Slots</th>
+            <td>
+                <template x-for="timeIndex in selectedTimeSlots">
+                    <div x-text="openTimes[timeIndex].title"></div>
+                </template>
+            </td>
+        </tr>
+        <tr>
+        <th>Sri Lankan Adult</th>
+            <td> 
+                <div x-text=" ticketTypes[0].count"></div>
+            </td>
+        <tr>
+        <th>Sri Lankan Child</th>
+            <td>
+              <div x-text="ticketTypes[1].count"></div>
+            </td>
+        <tr>
+        <th>Foreign Adult</th>
+            <td>
+               <div x-text="ticketTypes[2].count"></div>
+            </td>
+        </tr>
+        <tr>
+        <th>Foreign Child</th>
+            <td>
+              <div x-text="ticketTypes[3].count"></div>
+            </td>
+        </tr>
+        <tr>
+        <th>Infant</th>
+            <td>
+                <div x-text="ticketTypes[4].count"></div>
+            </td>
+        </tr>
+        <th>Total Payable</th>
+        <td>
+             $ <span x-text="calculateGrandTotal(ticketTypes)">
+        </span>
+        </td>
+        </tr>
+    </table>
+  </div>
+<br>
+    
+
+
+<button type="button" x-on:click="gotoCheckout()">Continue with Purchase</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+
+ 
+<footer class="footer">
+    <div class="quick-links">
+      <a href="index.html">Home</a>
+      <a href="Purchase and Donate.html">Purchase and Donate</a>
+      <a href="Threats to turtles.html">Threats</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://web.facebook.com/Aturtles/?_rdc=1&_rdr"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/SeaTurtles_org"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/turtles_of_inst/?hl=en"><i class="fab fa-instagram"></i></a>
+      
+    </div>
+    <div class="newsletter-form">
+      <form action="#" method="post">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <input type="submit" value="Subscribe">
+      </form>
+    </div>
+    <div class="developer">
+      Developed by <a href="https://www.linkedin.com/in/zafir-sharaz-5922215b/">Zafir Sharaz</a>
+    </div>
+    <div class="copyright">
+      &copy; 2023 All rights reserved. <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>
+    </div>
+
+
+
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.data('tickets', () => ({
+        date: null,
+        ticketTypes: [
+            {
+                name: 'Sri Lankan Adult',
+                peak: 6,
+                normal: 4,
+                count: 0,
+                total: 0
+            },
+            {
+                name: 'Sri Lankan Child',
+                peak: 3,
+                normal: 2,
+                count: 0,
+                total: 0
+            },
+            {
+                name: 'Foreign Adult',
+                peak: 13,
+                normal: 10,
+                count: 0,
+                total: 0
+            },
+            {
+                name: 'Foreign Child',
+                peak: 8,
+                normal: 5,
+                count: 0,
+                total: 0
+            },
+            {
+                name: 'Infant',
+                peak: 0,
+                normal: 0,
+                count: 0,
+                total: 0
+            },
+        ],
+        openTimes: [
+            {
+                title: '7AM to 8AM',
+                isPeak: false
+            },
+            {
+                title: '8AM to 9AM',
+                isPeak: false
+            },
+            {
+                title: '9AM to 10AM',
+                isPeak: false
+            },
+            {
+                title: '10AM to 11AM',
+                isPeak: true
+            },
+            {
+                title: '11AM to 12PM',
+                isPeak: true
+            },
+            {
+                title: '12PM to 1PM',
+                isPeak: true
+            },
+            {
+                title: '1PM to 2PM',
+                isPeak: false
+            },
+            {
+                title: '2PM to 3PM',
+                isPeak: false
+            },
+            {
+                title: '3PM to 4PM',
+                isPeak: true
+            },
+            {
+                title: '4PM to 5PM',
+                isPeak: true
+            },
+            {
+                title: '5PM to 6PM',
+                isPeak: true
+            },
+        ],
+
+        selectedTimeSlots: [],
+
+        showTimes: false,
+        //------- Functions -------
+
+        selectTimeSlot(index) {
+
+            // check if the index is already in the array
+            if (this.selectedTimeSlots.includes(index)) {
+
+                // remove the index from the array
+                this.selectedTimeSlots = this.selectedTimeSlots.filter(item => item !== index);
+
+            } else {
+
+                // Todo - you should be able to select time slots in the past !!!
+
+                // get the last element of the array
+                let lastElement = this.selectedTimeSlots[this.selectedTimeSlots.length - 1];
+
+                // add 1 to the last element and check if the value is equals to the index
+                if (!this.selectedTimeSlots.length || index - 1 == lastElement) {
+
+                    // add the index to the array
+                    this.selectedTimeSlots.push(index);
+
+                } else {
+                    alert('You can only select consecutive time slots');
+                }
+            }
+
+            // sort the array
+            this.selectedTimeSlots = this.selectedTimeSlots.sort();
+
+
+            console.log(this.selectedTimeSlots);
+        },
+
+        calculate(ticketType) {
+
+            let total = 0;
+
+            this.selectedTimeSlots.forEach((timeSlotIndex) => {
+
+                // calculate the total
+                total += parseInt(ticketType.count * (this.openTimes[timeSlotIndex].isPeak ? ticketType.peak : ticketType.normal));
+            });
+
+            ticketType.total = total;
+        
+        },
+        calculateGrandTotal(ticketTypes) {
+            grandtotal = 0;
+
+            for (const ticketType of ticketTypes) {
+                grandtotal += ticketType.total;
+            }
+
+            return grandtotal;
+
+        },
+        
+        gotoCheckout() {
+            // store the data in the local storage
+            localStorage.setItem('ticketTypes', JSON.stringify(this.ticketTypes));
+            localStorage.setItem('savedTimeslots', JSON.stringify(this.selectedTimeSlots));
+            localStorage.setItem('date', JSON.stringify(this.date));
+
+            // redirect to the checkout page
+            window.location.href = 'details.html';
+        }
+
+    }));
+})
+</script>
+
+<script src="javascript/script.js"></script>
+
+
+</body>
+</html>
+    

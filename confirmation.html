@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--Meta tags for mobile and copyright, index -->
+  <meta charset="utf-8">
+  <meta name="keywords" content="TurtleMe,Turtles, Turtle hatcheries in Sri Lanka">
+  <meta name="description" content="Turtle Hatcheries in Sri Lanka">
+  <meta name="author" content="Zafir">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  <title>Confirmation Page</title>
+  <link rel="stylesheet" href="css/confirmation.css">
+  <link rel="icon" type="image/x-icon" href="images/Logo.jpeg">
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="https://kit.fontawesome.com/6b0af4bcb3.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/details.css">
+</head>
+
+<body>
+  <div x-data="confirmation">
+  <header>
+      <div class="wrapper">
+          <div class="logo">
+              <a href="index.html"><img src="images/Logo.jpeg" alt="logo"></a>
+          </div>
+          <div class="navbar">
+              <div class="close-nav"><button>×</button></div>
+              <nav>
+                  <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="Turtle categories.html">Turtle categories</a></li>
+                      <li><a href="Hikkaduwa turtle hatchery.html"> Hikkaduwa hatchery</a></li>
+                      <li><a href="Threats to turtles.html">Threats</a></li>
+                      <li><a href="Kosgoda.html">Kosgoda</a></li>
+                      <li><a href="Bentota.html">Bentota</a></li>
+                      <li><a href="Purchase and Donate.html">Purchase and Donate</a></li>
+                  </ul>
+              </nav>
+          </div>
+          <div class="menu-bar">
+              <button><i></i></button>
+          </div>
+      </div>
+  </header>
+  <br>
+  <div class="box">
+    <div class="box-header">
+    <div class="center-container">
+    <h1>Booking Details</h1>    
+    <h2 style="color: black;">Thank you for your Purchase!</h2>
+    <p>Your booking has been confirmed!</p>
+    <h2>Purchase Summary</h2>
+    <div class="table-guest">
+        <table>
+           <tr>
+            <th>Date</th>
+            <td><div x-text="date"></div></td>
+          </tr>
+            <tr>
+                <th>Time Slots</th>
+                <td>
+                    <template x-for="timeIndex in selectedTimeSlots">
+                        <div x-text="openTimes[timeIndex].title"></div>
+                    </template>
+                </td>
+            </tr>
+            <tr>
+            <th>Sri Lankan Adult</th>
+                <td>
+                    <div x-text=" ticketTypes[0].count"></div>
+                </td>
+            <tr>
+            <th>Sri Lankan Child</th>
+                <td>
+                    <div x-text=" ticketTypes[1].count"></div>
+                </td>
+            <tr>
+            <th>Foreign Adult</th>
+                <td>
+                    <div x-text=" ticketTypes[2].count"></div>
+                </td>
+            </tr>
+            <tr>
+            <th>Foreign Child</th>
+                <td>
+                    <div x-text=" ticketTypes[3].count"></div>
+                </td>
+            </tr>
+            <tr>
+            <th>Infant</th>
+                <td>
+                    <div x-text=" ticketTypes[4].count"></div>
+                </td>
+            </tr>
+            <th>Guest Name</th>
+            <td><div x-text="guest.fullName"></div></td>
+          </tr>
+          <tr>
+            <th>mobile</th>
+            <td><div x-text="guest.mobile"></div></td>
+          </tr>
+            <tr>
+            <th>email</th>
+            <td><div x-text="guest.email"></div></td>
+            </tr>
+            <th>Gender</th>
+            <td><div x-text="guest.gender"></div></td>
+            </tr>
+            <th>Total Paid</th>
+            <td> $ <span x-text="calculateGrandTotal(ticketTypes)">
+            </span>
+            </td>
+            </tr>
+        </table>
+      </div>
+    </div>
+</div>
+<br>
+</div>
+<br>
+<footer class="footer">
+    <div class="quick-links">
+      <a href="index.html">Home</a>
+      <a href="Purchase and Donate.html">Purchase and Donate</a>
+      <a href="Threats to turtles.html">Threats</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://web.facebook.com/Aturtles/?_rdc=1&_rdr"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/SeaTurtles_org"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/turtles_of_inst/?hl=en"><i class="fab fa-instagram"></i></a>
+      
+    </div>
+    <div class="newsletter-form">
+      <form action="#" method="post">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <input type="submit" value="Subscribe">
+      </form>
+    </div>
+    <div class="developer">
+      Developed by <a href="https://www.linkedin.com/in/zafir-sharaz-5922215b/">Zafir Sharaz</a>
+    </div>
+    <div class="copyright">
+      &copy; 2023 All rights reserved. <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>
+    </div>
+
+    </footer>
+
+
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('confirmation', () => ({
+            openTimes: [
+                {
+                    title: '7AM to 8AM',
+                    isPeak: false
+                },
+                {
+                    title: '8AM to 9AM',
+                    isPeak: false
+                },
+                {
+                    title: '9AM to 10AM',
+                    isPeak: false
+                },
+                {
+                    title: '10AM to 11AM',
+                    isPeak: true
+                },
+                {
+                    title: '11AM to 12PM',
+                    isPeak: true
+                },
+                {
+                    title: '12PM to 1PM',
+                    isPeak: true
+                },
+                {
+                    title: '1PM to 2PM',
+                    isPeak: false
+                },
+                {
+                    title: '2PM to 3PM',
+                    isPeak: false
+                },
+                {
+                    title: '3PM to 4PM',
+                    isPeak: true
+                },
+                {
+                    title: '4PM to 5PM',
+                    isPeak: true
+                },
+                {
+                    title: '5PM to 6PM',
+                    isPeak: true
+                },
+            ],
+            calculateGrandTotal(ticketTypes) {
+                let grandTotal = 0;
+                ticketTypes.forEach(ticketType => {
+                    grandTotal += ticketType.total;
+                });
+                return grandTotal;
+            },
+            guest: {
+                fullName: '',
+                mobile: '',
+                email: '',
+                gender: ''
+            },
+
+            card: {
+                cardNumber: '',
+                expiryDate: '',
+                cvv: '',
+                cardName: '',
+            },
+
+            init() {
+
+                this.ticketTypes = JSON.parse(localStorage.getItem('ticketTypes'));
+                this.selectedTimeSlots = JSON.parse(localStorage.getItem('savedTimeslots'));;
+                this.date = JSON.parse(localStorage.getItem('date'));
+                this.guest = JSON.parse(localStorage.getItem('guest'));
+
+                
+                
+               
+            },
+            gotoPayment() {
+                // set the guest data to local storage
+                // localStorage.setItem('guest', JSON.stringify(this.guest));
+                // localStorage.setItem('ticketTypes', ticketTypes);
+                // localStorage.setItem('selectedTimeSlots', savedTimesSlots);
+                // localStorage.setItem('date', date);  
+                
+                
+                
+
+                 
+            }
+        }))
+    })
+</script>
+
+</body>
+
+</html>

@@ -42,7 +42,7 @@ Setup
 Clone the repository: 
 bash
 Copy code
-git clone https://github.com/Zafir8/TurtleMe.git
+git clone https://github.com/Zafir8/turtle.git
 Navigate to the project directory:
 bash
 Copy code

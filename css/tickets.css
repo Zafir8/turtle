@@ -353,12 +353,14 @@ ul {
     background-color: #f2f2f2;
     padding: 8px;
     text-align: left;
+    
 }
 
 /* Style for charges table cells */
 .charges-table td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
+    border: 1px solid black;
 }
 
 /* Style for charges footer row */

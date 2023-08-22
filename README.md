@@ -1,6 +1,5 @@
 # TurtleMe
 TurtleMe is a turtle blog website
-TurtleMe Turtle Blog Website
 
 TurtleMe is a turtle blog website that showcases a turtle hatchery in Sri Lanka. The website is built using HTML, CSS, and JavaScript, and serves as a platform to raise awareness about the importance of turtle conservation and provide information about the hatchery's efforts.
 

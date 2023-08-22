@@ -62,27 +62,28 @@
                 x-on:input="showMessage = cardNumber.replace(/-/g, '').length !== 16">
             <div x-show="showMessage" class="text-red-500">Please enter a valid 16-digit card number.</div>
         </div>
-
         <div x-data="cardValidation()">
             <h2 for="expiryDate">Expiry Date</h2>
             <input type="text" name="expiryDate" id="expiryDate" x-model="card.expiryDate" x-on:input="checkExpiry" required pattern="(0[1-9]|1[0-2])\/\d{2}" title="Please enter a valid expiry date in MM/YY format" x-mask="99/99" placeholder="MM/YY">
-            <p x-show="showMessage" class="text-red-500">The card is too old.</p> 
+            <p x-show="showMessage" class="text-red-500">The card is too old.</p>
+        </div> 
+        <div x-data="{ cardCvv: '', showMessage : false }">
+            <h2 for="cvv">CVV</h2>
+            <input type="text" name="cvv" id="cvv" x-model="cardCvv" required
+                pattern="\d{3}" title="Please enter a valid 3-digit CVV"
+                x-mask="999" placeholder="999"
+                x-on:input="showMessage = cardCvv.length !== 3">
+            <div x-show="showMessage" class="text-red-500">Please enter a valid 3-digit CVV.</div>
+        </div>
+        <div x-data="{ cardName: '', showMessage: false }">
+            <h2 for="cardName">Card Name</h2>
+            <input type="text" name="cardName" id="cardName" x-model="cardName" required
+                pattern="[A-Za-z\s]+" title="Please enter a valid card name (letters and spaces only)"
+                x-on:input="showMessage = !/^[A-Za-z\s]+$/.test(cardName)" placeholder="John Smith">
+            <div x-show="showMessage" class="text-red-500">Please enter a valid card name (letters and spaces only).</div>
+        </div>
             
-            <div x-data="{ cardCvv: '', showMessage : false }">
-                <h2 for="cvv">CVV</h2>
-                <input type="text" name="cvv" id="cvv" x-model="cardCvv" required
-                    pattern="\d{3}" title="Please enter a valid 3-digit CVV"
-                    x-mask="999" placeholder="999"
-                    x-on:input="showMessage = cardCvv.length !== 3">
-                <div x-show="showMessage" class="text-red-500">Please enter a valid 3-digit CVV.</div>
-            </div>
-            <div x-data="{ cardName: '', showMessage: false }">
-                <h2 for="cardName">Card Name</h2>
-                <input type="text" name="cardName" id="cardName" x-model="cardName" required
-                    pattern="[A-Za-z\s]+" title="Please enter a valid card name (letters and spaces only)"
-                    x-on:input="showMessage = !/^[A-Za-z\s]+$/.test(cardName)" placeholder="John Smith">
-                <div x-show="showMessage" class="text-red-500">Please enter a valid card name (letters and spaces only).</div>
-            </div>
+            
         
 
 
@@ -152,8 +153,6 @@
             </tr>
         </table>
       </div>
-    
-      <div>
         <br>
         <button type="submit" x-bind:disabled="showMessage">
             <b>Pay</b> $ <b><span x-text="calculateGrandTotal(ticketTypes)"></span></b>

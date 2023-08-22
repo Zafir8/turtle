@@ -16,12 +16,13 @@
   <link rel="icon" type="image/x-icon" href="images/Logo.jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="//unpkg.com/alpinejs" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
 
 </head>
 
 <body>
   <div x-data="tickets">
+
   <header>
       <div class="wrapper">
           <div class="logo">
@@ -51,9 +52,7 @@
     <img src="images/Booking Page imag.jpeg" alt="Turtle-main-image" style="width:100%;">
     <div class="main-text ">Book Tickets</div>
   </div>
-  <br>
-  <div>
-    <div>
+        <br>
         <div class="box">
         <div class="dates-serction">
             <h2>Pick a date to visit</h2>
@@ -119,9 +118,11 @@
                     <input type="number" x-model="ticketTypes[index].count" />
                     <button type="button"
                         x-on:click="ticketTypes[index].count = ticketTypes[index].count + 1; calculate(ticketTypes[index])" >+</button>
+            
+                </div>
         </template>
-        </div>
-    
+        
+    </div>
 <br>
 
 <h2>Purchase Summary</h2>
@@ -182,15 +183,11 @@
     
 
 
-<button type="button" x-on:click="gotoCheckout()"><b>Continue with Purchase</b></button>
-</div>
-</div>
-</div>
-</div>
-</div>
-<br>
+<button type="button" x-on:click="gotoCheckout()" x-bind:disabled="!date || selectedTimeSlots.length === 0 || !atLeastOneTicketTypeSelected()"><b>Continue with Purchase</b></button>
 
- 
+</div>
+
+ <br>
 <footer class="footer">
     <div class="quick-links">
       <a href="index.html">Home</a>
@@ -216,7 +213,7 @@
     <div class="copyright">
       &copy; 2023 All rights reserved. <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>
     </div>
-
+</footer>
 
 
 <script>
@@ -367,6 +364,10 @@ document.addEventListener('alpine:init', () => {
 
             return grandtotal;
 
+        },
+
+        atLeastOneTicketTypeSelected() {
+            return this.ticketTypes.some(ticketType => ticketType.count > 0);
         },
         
         gotoCheckout() {

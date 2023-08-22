@@ -16,9 +16,7 @@
   <link rel="stylesheet" href="css/details.css">
   <link rel="icon" type="image/x-icon" href="images/Logo.jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <script src="javascript/details.js"></script>
   <script src="//unpkg.com/alpinejs" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 
@@ -80,7 +78,7 @@
             <input type="email" name="confirmEmail" id="confirmEmail" x-model="guest.confirmEmail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address"
                 x-bind:class="{ 'border-red-500': guest.confirmEmail !== guest.email }">
             <p x-show="guest.confirmEmail !== guest.email" class="text-red-500">Emails do not match.</p>
-        
+        </div>
         <div>
             <h2 for="gender">Gender</h2>
             <p>Select your Gender (optional)</p>
@@ -142,7 +140,6 @@
                 </tr>
             </table>
           </div>
-
           <br>
 
     <div class="table-guest">
@@ -163,19 +160,13 @@
             <td><div x-text="guest.gender"></div></td>
             </tr>
         </table>
-      </div>
-   
-
-      <div>
+    </div>
         <br>
         <button type="submit" x-bind:disabled="guest.confirmEmail !== guest.email"><b>Proceed to Payment</b></button>
-      </div>
-     </div>
+    </div>
 </div>
 </form>
 <br>
-    
-
     <footer class="footer">
         <div class="quick-links">
           <a href="index.html">Home</a>
@@ -201,6 +192,7 @@
         <div class="copyright">
           &copy; 2023 All rights reserved. <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>
         </div>
+    </footer>
     
 
 

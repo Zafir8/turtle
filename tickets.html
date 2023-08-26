@@ -16,6 +16,7 @@
   <link rel="icon" type="image/x-icon" href="images/Logo.jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="javascript/date.js"></script>
 
 
 </head>
@@ -57,7 +58,7 @@
         <div class="dates-serction">
             <h2>Pick a date to visit</h2>
             <p>Select a Date from the Calender</p>
-            <input type="date" name="date" id="date" x-model="date" >
+            <input type="date" name="date" id="date" x-model="date" x-bind:min="getToday()" >
         </div>
         <h2>Charges</h2>
         <p>Please refer below before proceeding...</p>
@@ -220,6 +221,7 @@
 document.addEventListener('alpine:init', () => {
     Alpine.data('tickets', () => ({
         date: null,
+        getToday: getToday,
         ticketTypes: [
             {
                 name: 'Sri Lankan Adult',
